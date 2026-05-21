@@ -60,5 +60,6 @@ next-dev*.log
 *.tsbuildinfo
 next-env.d.ts
 
-#file md
-*.md
+# local AI assistant instructions
+AGENTS.md
+CLAUDE.md
