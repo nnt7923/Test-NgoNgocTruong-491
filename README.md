@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vertical Video Feed
 
-## Getting Started
+Demo Next.js app mô phỏng giao diện xem video dạng cuộn dọc như các ứng dụng mạng xã hội.
 
-First, run the development server:
+## Công nghệ
+
+- Next.js App Router
+- TypeScript
+- CSS Modules
+- Intersection Observer API
+- CSS Scroll Snap
+
+## Tính năng
+
+- Mỗi video chiếm toàn bộ màn hình trên mobile.
+- Trên desktop, video được cố định theo khung 9:16 ở giữa màn hình.
+- Cuộn mượt từng video bằng `scroll-snap-type`.
+- Click vào video để Play/Pause.
+- Tự động Play/Pause khi cuộn tới hoặc rời khỏi viewport.
+- Nút Like đổi màu và tăng/giảm số lượt thích.
+- Sidebar trên desktop và bottom nav trên mobile.
+
+## Chạy local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở trình duyệt tại:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Logic Play/Pause khi cuộn
 
-## Learn More
+Component `VideoFeed` lưu danh sách DOM node của các thẻ `<video>` bằng `useRef(new Map())`.
+Mỗi `VideoCard` đăng ký video của mình qua callback `registerVideo`.
 
-To learn more about Next.js, take a look at the following resources:
+Trong `useEffect`, `VideoFeed` tạo một `IntersectionObserver` để theo dõi các video. Khi một video có `intersectionRatio >= 0.72`, app xem video đó là video đang active và gọi `video.play()`. Khi video không còn nằm đủ trong viewport, observer gọi `video.pause()` để dừng video đã bị cuộn qua.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Video được đặt `muted`, `loop` và `playsInline` để trình duyệt cho phép autoplay ổn định trên desktop và mobile. Ngoài logic tự động, người dùng vẫn có thể click trực tiếp vào video để chuyển đổi Play/Pause thủ công.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Build
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+npm run build
+```

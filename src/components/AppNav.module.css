@@ -1,0 +1,82 @@
+.nav {
+  position: fixed;
+  left: 18px;
+  top: 50%;
+  z-index: 20;
+  display: flex;
+  width: 172px;
+  transform: translateY(-50%);
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(10, 13, 18, 0.72);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(18px);
+}
+
+.navButton {
+  display: grid;
+  min-height: 44px;
+  grid-template-columns: 24px 1fr;
+  align-items: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-align: left;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.navButton:hover,
+.navButton:focus-visible,
+.active {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.navButton:focus-visible {
+  outline: 2px solid #f4a261;
+  outline-offset: 2px;
+}
+
+.navButton:hover {
+  transform: translateX(2px);
+}
+
+@media (max-width: 860px) {
+  .nav {
+    left: 50%;
+    top: auto;
+    bottom: 12px;
+    width: min(420px, calc(100vw - 28px));
+    transform: translateX(-50%);
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+  }
+
+  .navButton {
+    min-height: 48px;
+    flex: 1;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 3px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .navButton:hover {
+    transform: translateY(-1px);
+  }
+}
