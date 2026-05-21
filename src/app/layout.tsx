@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vertical Video Feed",
-  description: "A responsive vertical scroll video feed built with Next.js.",
+  title: "Test-NgoNgocTruong-491",
+  description: "Vertical video feed test built with Next.js.",
 };
 
 export default function RootLayout({
